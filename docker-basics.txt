@@ -68,3 +68,28 @@ docker run -it test:pandas some_number
 You should get the same output you did when you ran the pipeline script by itself.
 
 Note: these instructions asume that pipeline.py and Dockerfile are in the same directory. The Docker commands should also be run from the same directory as these files.
+
++++++++++++++
+Ingesting data to postgres
+
+docker run -it \
+	-e POSTGRES_USER="root" \
+	-e POSTGRES_PASSWORD="root" \
+	-e POSTGRES_DB="ny_taxi_postgres_data" \
+	-v $(pwd)/ny_taxi_postgres_data:/var/lib/postgres/data \
+	-p 5432:5432 \
+	postgres:13
+
+'-e' To set environment variables for the container
+'-v' To map host machine dir location to that with container's. As we want to retain the data and queries that we fired on postgres
+     and since docker is stateless, this is needed.
+'-p' To map port of host machine with that of container's. We'll be sending queries from the 
+     host machine port and will fetch result from the container's port.
+
+lastly 'postgres:13' Specifying tag and version of image that we want to run
+
+=====================================
+To remove an image from docker
+docker image rm -f <image_id>
+docker image rm -f 3455605fa931
+=====================================

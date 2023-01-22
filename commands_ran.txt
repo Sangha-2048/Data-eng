@@ -1,0 +1,24 @@
+# Create a vitual env
+python3 -m venv venv
+
+#Activate virtual env
+source venv/bin/activate
+
+# Run pgcli client to interact and run queries on postgres
+pip3 install pgcli
+
+# Connect to postgres
+pgcli -h localhost -u root -p 5432 -d ny_taxi_postgres_data
+(pwd: root)
+
+# Install jupyter package
+pip3 install jupyter
+
+# Downloading dataset
+wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/yellow_tripdata_2021-01.csv.gz 
+
+# To create a sample file
+head -n -100 <file_name> > <sample_file_name>
+
+# To count number of line
+wc -l <file_name>
