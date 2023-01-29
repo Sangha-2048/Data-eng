@@ -17,3 +17,32 @@ them in a single network
 	docker run -it -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" -e PGADMIN_DEFAULT_PASSWORD="root" -p 8080:80 --network=pg-network --name pgadmin dpage/pgadmin4
 
 	docker run -it -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="root" -e POSTGRES_DB="ny_taxi_postgres_data" -v $(pwd)/ny_taxi_postgres_data:/var/lib/postgres/data -p 5432:5432 --network=pg-network --name pg-database2 postgres:13
+
+# Using lib called argparse to read command line args
+	parser = argparse.ArgumentParser(description='Ingest CSV data to postgres')
+
+	parser.add_argument('--user', help='user name for postgres')
+	parser.add_argument('--pwd', help='password for postgres')
+	args = parser.parse_args()
+	print(args.accumulate(args.integers))
+
+	main(args)
+
+# List all the docker networks
+docker network list
+
+# Diff b/w docker image and docker container
+The key difference between a Docker image Vs a container is that a Docker image 
+is a read-only immutable template that defines how a container will be 
+realized. A Docker container is a runtime instance of a Docker image that 
+gets created when the $ docker run command is implemented
+
+# To list all running containers
+docker container ls
+
+# To start services
+docker-compose up
+# Needs docker-compose.yml
+
+# To start postgres and PGAdmin service in one network use docker-compose up command
+# Avoid using tabs in docker-compose.yml file

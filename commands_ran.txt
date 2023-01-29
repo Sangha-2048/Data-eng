@@ -22,3 +22,18 @@ head -n -100 <file_name> > <sample_file_name>
 
 # To count number of line
 wc -l <file_name>
+
+# .swp was created, due to which unable to open the commands_ran.txt file
+# .commands_ran.txt.swp
+ll -a # To see .swp file
+
+# To convert a jupyter notebook to script
+jupyter nbconvert --to=script upload_data.ipynb
+
+# Installing docker compose
+
+sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+docker-compose --version
