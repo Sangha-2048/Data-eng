@@ -83,7 +83,7 @@ if __name__ == '__main__':
 	parser.add_argument('--url', help='url of the csv file')
 
 	args = parser.parse_args()
-	print(args.accumulate(args.integers))
+	#print(args.accumulate(args.integers))
 
 	main(args)
 

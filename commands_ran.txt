@@ -37,3 +37,10 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 docker-compose --version
+
+# Running docker-compose.yml
+docker-compose up
+
+# Running upload_data.py script to upload the data 
+
+python upload_data.py --user=root --pwd=root --host=localhost --port=5432 --db=ny_taxi_postgres_data --table_name=yellow_taxi_data --url=dsfsd

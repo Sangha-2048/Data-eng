@@ -93,3 +93,8 @@ To remove an image from docker
 docker image rm -f <image_id>
 docker image rm -f 3455605fa931
 =====================================
+
+# Delete an image that is running as container
+docker container rm <container_id>
+docker image rm <image_id>
+
