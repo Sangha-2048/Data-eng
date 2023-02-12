@@ -46,3 +46,7 @@ docker-compose up
 
 # To start postgres and PGAdmin service in one network use docker-compose up command
 # Avoid using tabs in docker-compose.yml file
+
+# To delete a branch from remote 
+git push origin -d <branch_name>
+git push origin -d py-2
