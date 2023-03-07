@@ -56,4 +56,4 @@ docker build -t taxi_ingest:v001 .
 
 # Passing all the arguments to the taxi_ingest image
 
-docker run taxi_ingest:v001 --user=root --pwd=root --host=localhost --port=5432 --db=ny_taxi_postgres_data --table_name=yellow_taxi_data --url=dsfsd
+docker run -it --network=pg-network taxi_ingest:v001 --user=root --pwd=root --host=localhost --port=5432 --db=ny_taxi_postgres_data --table_name=yellow_taxi_data --url=dsfsd

@@ -40,6 +40,9 @@ gets created when the $ docker run command is implemented
 # To list all running containers
 docker container ls
 
+# In case of permission denied error
+sudo chmod 666 /var/run/docker.sock
+
 # To start services
 docker-compose up
 # Needs docker-compose.yml

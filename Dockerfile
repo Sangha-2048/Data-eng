@@ -11,4 +11,4 @@ COPY upload_data.py upload_data.py
 
 # define what to do first when the container runs
 # in this example, we will just run the script
-ENTRYPOINT ["python3", "upload_data.py"]
+ENTRYPOINT ["python", "upload_data.py"]
