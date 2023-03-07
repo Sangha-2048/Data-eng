@@ -57,3 +57,13 @@ docker build -t taxi_ingest:v001 .
 # Passing all the arguments to the taxi_ingest image
 
 docker run -it --network=pg-network taxi_ingest:v001 --user=root --pwd=root --host=localhost --port=5432 --db=ny_taxi_postgres_data --table_name=yellow_taxi_data --url=dsfsd
+
+# Start a python http server
+python -m http.server
+
+# Get ip using hostname -I command since docker doesn't have files on its local host
+# therefore specifying actual ip of the machine
+
+http://172.17.0.1:8000/yellow_tripdata_2021-01.csv.gz
+
+# for wget command
