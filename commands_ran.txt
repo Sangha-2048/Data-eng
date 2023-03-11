@@ -70,3 +70,37 @@ http://172.17.0.1:8000/yellow_tripdata_2021-01.csv.gz
 
 # Downloaded taxi_zone_lookup.csv from 
 # https://github.com/DataTalksClub/nyc-tlc-data/releases/download/misc/taxi_zone_lookup.csv
+
+# Run upload_data.ipynb
+# Run upload_taxi_zone_data.ipynb
+# Run pgcli command 
+pgcli -h localhost -u root -p 5432 -d ny_taxi_postgres_data
+
+# Running a join query on yellow taxi data and zone data
+SELECT 
+tpep_pickup_datetime, tpep_dropoff_datetime, total_amount, 
+CONCAT(zpu."Borough" , ' / ' , zpu."Zone") as "pick_up_loc",
+CONCAT(zdo."Borough" , ' / ' , zdo."Zone") as "dropoff_loc"
+FROM yellow_taxi_data t, zones zpu, zones zdo 
+WHERE t."PULocationID" = zpu."LocationID" 
+AND 
+t."DOLocationID" = zdo."LocationID" 
+limit 100;
+
+# Writing same thing with join Condition
+SELECT 
+tpep_pickup_datetime, tpep_dropoff_datetime, total_amount, 
+CONCAT(zpu."Borough" , ' / ' , zpu."Zone") as "pick_up_loc",
+CONCAT(zdo."Borough" , ' / ' , zdo."Zone") as "dropoff_loc"
+FROM yellow_taxi_data t
+JOIN zones zpu ON 
+t."PULocationID" = zpu."LocationID"
+JOIN zones zdo ON 
+t."DOLocationID" = zdo."LocationID" 
+LIMIT 5;
+
+Truncating timestamp field to DAY
+
+DATE_TRUNC('DAY', tpep_dropoff_datetime)
+OR
+CAST(tpep_dropoff_datetime AS DATE)
