@@ -53,3 +53,75 @@ docker-compose up
 # To delete a branch from remote 
 git push origin -d <branch_name>
 git push origin -d py-2
+
+++++++++++++++++++++++++++++++++++++++++++++++++
+Terraform and GCP (Google Cloud Plateform) notes
+++++++++++++++++++++++++++++++++++++++++++++++++
+
+Terraform is an infrastructure as code tool that allows us to provision infrastructure resources as code, 
+thus making it possible to handle infrastructure as an additional software component and take advantage of 
+tools such as version control. It also allows us to bypass the cloud vendor GUIs.
+
+During this course we will use Google Cloud Platform (GCP) as our cloud services provider.
+
+What is Terraform?
+1. open-source tool by HashiCorp, used for provisioning infrastructure resources ( can be VMs, containers, 
+networking resources).
+2. supports DevOps best practices for change management
+3. Managing configuration files in source control to maintain an ideal provisioning 
+state for testing and production environments
+4. use IaC style approach
+
+What is IaC?
+1. Infrastructure-as-Code
+build, change, and manage your infrastructure in a safe, consistent, and repeatable way by defining resource 
+configurations that you can version, reuse, and share.
+
+Some advantages
+1. Infrastructure lifecycle management
+2. Version control commits
+3. Very useful for stack-based deployments, and with cloud providers such as AWS, GCP, Azure, K8S…
+4. State-based approach to track resource changes throughout deployments
+
+=> Files and Declarations
+
+Files
+1. main.tf
+2 .variables.tf
+3. Optional: resources.tf, output.tf
+	.tfstate
+
+Declarations
+1. terraform: configure basic Terraform settings to provision your infrastructure
+
+2. required_version: minimum Terraform version to apply to your configuration
+
+3. backend: stores Terraform's "state" snapshots, to map real-world resources to your configuration.
+
+4. local: stores state file locally as terraform.tfstate
+
+5. required_providers: specifies the providers required by the current module
+
+6. provider:
+-> adds a set of resource types and/or data sources that Terraform can manage
+-> The Terraform Registry is the main directory of publicly available providers from most major infrastructure platforms.
+
+7. resource:
+-> blocks to define components of your infrastructure
+-> Project modules/resources: google_storage_bucket, google_bigquery_dataset, google_bigquery_table
+8. variable & locals:
+-> runtime arguments and constants
+
+Execution steps
+
+1. terraform init:
+-> Initializes & configures the backend, installs plugins/providers, & checks out an existing configuration from a version control
+
+2. terraform plan:
+-> Matches/previews local changes against a remote state, and proposes an Execution Plan.
+
+3. terraform apply:
+->Asks for approval to the proposed plan, and applies changes to cloud
+
+4. terraform destroy
+-> Removes your stack from the Cloud
